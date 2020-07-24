@@ -1,4 +1,4 @@
-# websockets-quickstart project
+# Chat com Websockets - Microservice Java Quarkus
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
