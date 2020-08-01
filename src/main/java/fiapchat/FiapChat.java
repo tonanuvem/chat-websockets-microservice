@@ -21,19 +21,19 @@ public class FiapChat {
     @OnOpen
     public void onOpen(Session session, @PathParam("username") String username) {
         sessions.put(username, session);
-        broadcast("User " + username + " joined");
+        broadcast("Usuário " + username + " entrou");
     }
 
     @OnClose
     public void onClose(Session session, @PathParam("username") String username) {
         sessions.remove(username);
-        broadcast("User " + username + " left");
+        broadcast("Usuário " + username + " saiu");
     }
 
     @OnError
     public void onError(Session session, @PathParam("username") String username, Throwable throwable) {
         sessions.remove(username);
-        broadcast("User " + username + " left on error: " + throwable);
+        broadcast("Usuário " + username + " saiu com erro: " + throwable);
     }
 
     @OnMessage
@@ -45,7 +45,7 @@ public class FiapChat {
         sessions.values().forEach(s -> {
             s.getAsyncRemote().sendObject(message, result ->  {
                 if (result.getException() != null) {
-                    System.out.println("Unable to send message: " + result.getException());
+                    System.out.println("Falha ao enviar a mensagem: " + result.getException());
                 }
             });
         });
