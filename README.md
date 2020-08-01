@@ -9,6 +9,7 @@ website: https://quarkus.io/
 ```
 git clone
 cd chat-websickets-microservice
+chmod +x mvnw
 ./mvnw quarkus:dev
 ```
 
