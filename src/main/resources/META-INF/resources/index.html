@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="UTF-8">
-    <title>Quarkus Chat!</title>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.24.0/css/patternfly.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.24.0/css/patternfly-additions.min.css">
-
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>FIAP Quarkus Chat!</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <style>
         #chat {
           resize: none;
@@ -15,40 +17,40 @@
           max-height: 300px;
       }
     </style>
-</head>
-
-<body>
-        <nav class="navbar navbar-default navbar-pf" role="navigation">
-                <div class="navbar-header">                  
-                  <a class="navbar-brand" href="/">
-                   <img src="shift.jpg"></img>
-                   <p><strong>>> FIAP Microservices Chat using Java Quarkus!</strong></p>
-                  </a>
-                </div>
-        </nav>
-    <div class="container">
-      <br/>
-      <div class="row">
-          <input id="name" class="col-md-4" type="text" placeholder="defina seu nome">
-          <button id="connect" class="col-md-1 btn btn-primary" type="button">Conectar</button>
-          <br/>
-          <br/>
+  </head>
+  <body>
+    <!--
+    <nav class="navbar navbar-default navbar-pf" role="navigation">      <div class="navbar-header"> <a class="navbar-brand" href="/"> <img
+            src="shift.jpg">          <p><strong>&gt;&gt; FIAP Microservices Chat using Java Quarkus!</strong></p>
+        </a> </div>    </nav>
+    -->
+    <nav>
+      <div class="nav-wrapper"> <a href="" class="brand-logo"> <i class="material-icons">chat</i>
+          FIAP Microservices Chat using Java Quarkus! </a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><i id="iconestatus" class="material-icons">filter_drama</i></li>
+          <li><a id="status" href="#name">Não conectado</a></li>
+          <li><a href="#chat">contador de eventos: <span id="mensagens" class="new badge" data-badge-caption="novas mensagens">0</span></a></li>
+        </ul>
       </div>
-      <div class="row">
-          <textarea class="col-md-8" id="chat">
-            </textarea>
+    </nav>
+    <div class="container"> <br>
+      <div class="row"> <input id="name" class="col-md-4" placeholder="defina seu nome"
+          type="text">
+        <button id="connect" class="col-md-1 btn btn-primary" type="button">
+          Conectar<i class="material-icons right">cloud</i> </button> <br>
+        <br>
       </div>
-      <div class="row">
-          <input class="col-md-6" id="msg" type="text" placeholder="digite sua messagem">
-          <button class="col-md-1 btn btn-primary" id="send" type="button" disabled>Enviar</button>
+      <div class="row"> <textarea class="col-md-8" id="chat">            </textarea>
       </div>
-      
-      </div>
-
+      <div class="row"> <input class="col-md-6" id="msg" placeholder="digite sua messagem"
+          type="text">
+        <button class="col-md-1 btn btn-primary" id="send" type="button" disabled="disabled">
+          Enviar<i class="material-icons right">send</i> </button> </div>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.24.0/js/patternfly.min.js"></script>
-
     <script type="text/javascript">
       var connected = false;
       var socket;
@@ -87,11 +89,14 @@
                   $("#send").attr("disabled", false);
                   $("#connect").attr("disabled", true);
                   $("#name").attr("disabled", true);
+                  $("#status").text("CONECTADO");
+                  $("#iconestatus").text("cloud_done");
                   $("#msg").focus();
               };
               socket.onmessage =function(m) {
                   console.log("Got message: " + m.data);
                   $("#chat").append(m.data + "\n");
+                  $("#mensagens").text( parseInt($("#mensagens").text()) + 1 );
                   scrollToBottom();
               };
           }
@@ -111,6 +116,5 @@
       };
 
     </script>
-</body>
-
+  </body>
 </html>
