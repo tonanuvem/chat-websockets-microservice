@@ -4,7 +4,7 @@ Demonstração usando Quarkus: the Supersonic Subatomic Java Framework.
 
 website: https://quarkus.io/
 
-## Running the application in dev mode
+## Running the app
 
 ```
 git clone
@@ -15,4 +15,3 @@ cd chat-websickets-microservice
 ## Front-end utiliza Materialize CSS
 
 website: https://materializecss.com/
-
