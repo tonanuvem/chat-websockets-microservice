@@ -27,13 +27,13 @@ public class FiapChat {
     @OnClose
     public void onClose(Session session, @PathParam("username") String username) {
         sessions.remove(username);
-        broadcast("Usuário :" + username + ": saiu");
+        broadcast("Usuário \'" + username + "\' saiu");
     }
 
     @OnError
     public void onError(Session session, @PathParam("username") String username, Throwable throwable) {
         sessions.remove(username);
-        broadcast("Usuário :" + username + ": saiu com erro: " + throwable);
+        broadcast("Usuário \'" + username + "\' saiu com erro: " + throwable);
     }
 
     @OnMessage
